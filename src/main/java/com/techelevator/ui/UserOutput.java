@@ -1,5 +1,9 @@
 package com.techelevator.ui;
 
+import com.techelevator.inventory.Item;
+
+import java.util.Map;
+
 public class UserOutput {
     public void displayMessage(String message) {
         System.out.println();
@@ -45,4 +49,12 @@ public class UserOutput {
         System.out.print("Current balance remaining: ");
     }
 
+    public void displayVendingItems(Map<String, Item> inventoryMap){
+        System.out.println("HELP!!!!!!!!");
+        System.out.print(inventoryMap.get("A2").getSlotLocation());
+        System.out.print(inventoryMap.get("A2").getName());
+        System.out.print(inventoryMap.get("A2").getPrice());
+//        System.out.println(inventoryMap.values());
+
+    }
 }
