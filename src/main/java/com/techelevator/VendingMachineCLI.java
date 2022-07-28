@@ -8,8 +8,8 @@ public class VendingMachineCLI {
 
 	public static void main(String[] args) {
 
-		FileReader fileReader = new FileReader();
-		fileReader.readFile();
+		FileReader fileReader = new FileReader(); //TESTING
+		fileReader.readFile(); //TESTING
 
 		VendingMachine vendingMachine = new VendingMachine();
 		vendingMachine.run();

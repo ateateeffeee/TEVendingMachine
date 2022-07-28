@@ -1,13 +1,12 @@
 package com.techelevator.Reader;
 
-import com.techelevator.inventory.Candy;
-import com.techelevator.inventory.Drink;
-import com.techelevator.inventory.Gum;
-import com.techelevator.inventory.Munchy;
+import com.techelevator.inventory.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class FileReader {
@@ -21,6 +20,7 @@ public class FileReader {
 
         //Create new scanner
         try(Scanner fileReader = new Scanner(inventoryFile)){
+            Map<String, Item> inventoryMap = new HashMap<String, Item>();
 
             while(fileReader.hasNextLine()) {
 
@@ -34,17 +34,49 @@ public class FileReader {
 
                 if(itemType.equals("Candy")){
                     Candy candy = new Candy(slotLocation);
+                    candy.setName(name);
+                    candy.setPrice(new BigDecimal(price));
+
+                    //send to map
+                    inventoryMap.put(candy.getSlotLocation(), candy);
+
                 } else if(itemType.equals("Gum")){
                     Gum gum = new Gum(slotLocation);
+                    gum.setName(name);
+                    gum.setPrice(new BigDecimal(price));
+
+                    //send to map
+                    inventoryMap.put(gum.getSlotLocation(), gum);
+
                 } else if(itemType.equals("Drink")){
                     Drink drink = new Drink(slotLocation);
+                    drink.setName(name);
+                    drink.setPrice(new BigDecimal(price));
+
+                    //send to map
+                    inventoryMap.put(drink.getSlotLocation(), drink);
+
                 } else if(itemType.equals("Munchy")){
                     Munchy munchy = new Munchy(slotLocation);
+                    munchy.setName(name);
+                    munchy.setPrice(new BigDecimal(price));
+
+                    //send to map
+                    inventoryMap.put(munchy.getSlotLocation(), munchy);
+
                 }
 
-                System.out.println(currentLine);
-                System.out.println(delimitedString[1]);
+                //System.out.println(currentLine);
+                //System.out.println(delimitedString[1]);
+
+                //create items
+
+                //RETURN MAP
+
             }
+
+            //LEFT OFF HERE LEFT OFF HERE
+            System.out.println(inventoryMap.get("A1"));
 
         }catch(FileNotFoundException e) {
             System.out.println(inventoryFile.getAbsoluteFile() + " not found");
