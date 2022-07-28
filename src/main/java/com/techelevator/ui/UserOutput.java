@@ -29,6 +29,10 @@ public class UserOutput {
 
     }
 
+    public void displayOption(String option){
+        System.out.println("option = " + option);
+    }
+
     public void displayPurchaseMenu(){
         System.out.println("What would you like to do?");
         System.out.println();
