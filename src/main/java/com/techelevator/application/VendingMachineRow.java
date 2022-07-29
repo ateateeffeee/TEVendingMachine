@@ -18,4 +18,8 @@ public class VendingMachineRow {
 
         return quantity--;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
