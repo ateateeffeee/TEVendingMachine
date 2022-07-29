@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class UserOutput {
 
-    VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
-    private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
+    //VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
+    //private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
 
 
 //    public Map<String, VendingMachineRow> something (VendingMachineRowBuilder vendingMachineRowBuilder){
@@ -70,13 +70,42 @@ public class UserOutput {
         System.out.print("Please select an option: ");
     }
 
-    public void displaySelectItemScreen(Map<String, Item> inventoryMap){
-        displayVendingItems(inventoryMap);
+    public void displaySelectItemScreen(Map<String, Item> inventoryMap, Map<String, VendingMachineRow> vendingMachineRows){
+        displayVendingItems(inventoryMap, vendingMachineRows);
         System.out.println("Please enter the slot location: ");
 
     }
 
-    public void displayVendingItems(Map<String, Item> inventoryMap){
+    public void displayItemTypeMessage(String userInput,Map<String, Item> inventoryMap){
+        //if statements for each item type
+
+        String itemName = inventoryMap.get(userInput).getName();
+        String itemType = inventoryMap.get(userInput).getItemType();
+        String itemPrice = inventoryMap.get(userInput).getPrice().toString();
+        String itemTypeMessage = "";
+
+
+        if (itemType.equals("candy")) {
+           itemTypeMessage = "Sugar, Sugar, so Sweet!";
+
+        } else if (itemType.equals("munchy")){
+            itemTypeMessage = "Munchy, Munchy, so Good!";
+        } else if (itemType.equals("drink")){
+            itemTypeMessage = "Drinky, Drinky, Slurp Slurp!";
+        } else if (itemType.equals("gum")){
+            itemTypeMessage = "Chewy, Chewy, Lots O Bubbles!";
+        } else {
+            itemTypeMessage = "";
+        }
+        System.out.println("You purchased: " + itemName + "for $" + itemPrice);
+        System.out.println(itemTypeMessage);
+
+        //print money remaining
+
+
+    }
+
+    public void displayVendingItems(Map<String, Item> inventoryMap, Map<String, VendingMachineRow> vendingMachineRows){
         //CURRENTLY TESTING IN CLI FILE. NOT WHERE IT WILL STAY. MOVE IMPORTS TO USERINPUT
         //INCLUDE QUANTITY AFTER BUILDING MACHINE ROW CLASS
         //PRINT NOT AVAILABLE IF QUANTITY = 0

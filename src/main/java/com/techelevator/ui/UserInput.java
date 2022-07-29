@@ -19,7 +19,7 @@ public class UserInput {
         String selectedOption = scanner.nextLine();
         String option = selectedOption.trim().toLowerCase();
 
-        userOutput.displayOption(option);
+        //userOutput.displayOption(option);
         if (option.equalsIgnoreCase("d")) {
             return "display";
         }
@@ -39,7 +39,7 @@ public class UserInput {
         String selectedOption = scanner.nextLine();
         String option = selectedOption.trim().toLowerCase();
 
-        userOutput.displayOption(option);
+        //userOutput.displayOption(option);
         if (option.equalsIgnoreCase("m")) {
             return "feed money";
         }
@@ -52,6 +52,17 @@ public class UserInput {
         else {
             return "";
         }
+    }
+
+    public String getSelectItemOption(){
+        String selectedOption = scanner.nextLine();
+        String option = selectedOption.trim().toLowerCase();
+
+        //userOutput.displayOption(option);
+
+        return option;
+
+
     }
 }
 

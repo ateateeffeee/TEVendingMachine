@@ -5,16 +5,20 @@ import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class VendingMachine {
     UserInput userInput = new UserInput();
     UserOutput userOutput = new UserOutput();
+    VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
+    private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
 
     //boolean inMenu = true;
 
     public void run() {
 
+        //inventory file
         FileReader fileReader = new FileReader();
         fileReader.readFile();
 
@@ -27,7 +31,7 @@ public class VendingMachine {
             System.out.println(choice);
             if(choice.equals("display")) {
                 // display the items
-                userOutput.displayVendingItems(fileReader.readFile());
+                userOutput.displayVendingItems(fileReader.readFile(), vendingMachineRows);
             }
             else if(choice.equals("purchase")) {
 
@@ -38,9 +42,31 @@ public class VendingMachine {
                     //write logic to do math
                 }
                 else if(purchaseMenuChoice.equals("select item")){
-                    userOutput.displaySelectItemScreen(fileReader.readFile());
+
+                    while (purchaseMenuChoice.equals("select item")) {
+                        userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
+                        String selectItemOptionChoice = userInput.getSelectItemOption().toUpperCase();
+                        //update balance
+                        vendingMachineRows.get(selectItemOptionChoice).updateQuantity(); //update quantity
+                        userOutput.displayItemTypeMessage(selectItemOptionChoice,fileReader.readFile());
+                        //if 0 don't buy
+
+
+                        userOutput.displayPurchaseMenu();
+                        userInput.getPurchaseMenuOption();
+                    }
+                    userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
+                    String selectItemOptionChoice = userInput.getSelectItemOption();
+                    //user selectedItempOption to target item in map
+                    //System.out.println("You picked: " + pull item from map );
+
+                    //update balance
+                    //update quantity
 
                     //get userInput for items selected
+                    //purchasedItemScreen
+                    userOutput.displayPurchaseMenu();
+
                 }
                 else if(purchaseMenuChoice.equals("finish transaction")){
                     //display change due/change made with updated bal to $0

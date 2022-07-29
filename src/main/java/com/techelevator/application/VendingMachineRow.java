@@ -16,7 +16,7 @@ public class VendingMachineRow {
     public int updateQuantity(){
 
 
-        return quantity--;
+        return quantity -= 1;
     }
 
     public int getQuantity() {
