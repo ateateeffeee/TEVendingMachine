@@ -50,10 +50,39 @@ public class UserOutput {
     }
 
     public void displayVendingItems(Map<String, Item> inventoryMap){
+        //INCLUDE QUANTITY AFTER BUILDING MACHINE ROW CLASS
+        //PRINT NOT AVAILABLE IF QUANTITY = 0
         System.out.println("HELP!!!!!!!!");
-        System.out.print(inventoryMap.get("A2").getSlotLocation());
-        System.out.print(inventoryMap.get("A2").getName());
-        System.out.print(inventoryMap.get("A2").getPrice());
+        String[] slotLetterArray = new String[]{"A","B","C","D"};
+        String[] slotNumberArray = new String[]{"1","2","3","4"};
+
+        for (String currentLetter : slotLetterArray){
+            //for each number
+            for (String currentNumber : slotNumberArray) {
+                System.out.print(inventoryMap.get(currentLetter + currentNumber).getSlotLocation());
+                System.out.print("   ");
+                System.out.print(inventoryMap.get(currentLetter + currentNumber).getName());
+                System.out.print("   ");
+                System.out.print(inventoryMap.get(currentLetter + currentNumber).getPrice());
+                System.out.print("   ");
+                //FOR PRINTING QUANTITY
+                //if (.getQuantity > 1 && .getQuantity <= 6){
+                //System.out.print(vendingMachineRowMap.get(currentLetter + currentNumber).getQuantity());
+                //} else {
+                //System.out.println("Item unavailable. Please make another selection");
+            //}
+
+
+            }
+            //if we have time, make method to line up prices (count word.length and add that many spaces)
+
+        }
+
+//        System.out.print(inventoryMap.get("A1").getSlotLocation());
+//        System.out.print("   ");
+//        System.out.print(inventoryMap.get("A1").getName());
+//        System.out.print("   ");
+//        System.out.print(inventoryMap.get("A1").getPrice());
 //        System.out.println(inventoryMap.values());
 
     }
