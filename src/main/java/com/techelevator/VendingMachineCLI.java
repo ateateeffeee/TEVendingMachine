@@ -13,7 +13,8 @@ public class VendingMachineCLI {
 		fileReader.readFile(); //TESTING
 
 		UserOutput userOutput = new UserOutput(); //TESTING
-		userOutput.displayVendingItems(fileReader.readFile());  //TESTING
+		//userOutput.displayVendingItems(fileReader.readFile());  //TESTING
+		//userOutput.displaySelectItemScreen(fileReader.readFile()); //TESTING
 
 		VendingMachine vendingMachine = new VendingMachine();
 		vendingMachine.run();

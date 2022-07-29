@@ -48,7 +48,7 @@ public class FileReader {
                     gum.setPrice(new BigDecimal(price));
 
                     //send to map
-                    System.out.println(gum.getSlotLocation());
+                    //System.out.println(gum.getSlotLocation());
                     inventoryMap.put(gum.getSlotLocation(), gum);
 
                 } else if (itemType.equals("Drink")) {
@@ -81,7 +81,7 @@ public class FileReader {
             //LEFT OFF HERE LEFT OFF HERE
             //System.out.println(inventoryMap.);
             for (Map.Entry<String, Item> entry : inventoryMap.entrySet()) {
-                System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+                //System.out.println(entry.getKey() + ":" + entry.getValue().toString());
             }
 
 

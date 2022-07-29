@@ -20,13 +20,13 @@ public class UserInput {
         String option = selectedOption.trim().toLowerCase();
 
         userOutput.displayOption(option);
-        if (option.equals("d")) {
+        if (option.equalsIgnoreCase("d")) {
             return "display";
         }
-        else if (option.equals("p")) {
+        else if (option.equalsIgnoreCase("p")) {
             return "purchase";
         }
-        else if (option.equals("e")) {
+        else if (option.equalsIgnoreCase("e")) {
             return "exit";
         }
         else {

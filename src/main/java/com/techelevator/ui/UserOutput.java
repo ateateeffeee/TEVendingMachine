@@ -1,10 +1,29 @@
 package com.techelevator.ui;
 
+import com.techelevator.application.VendingMachineRow;
+import com.techelevator.application.VendingMachineRowBuilder;
 import com.techelevator.inventory.Item;
 
+import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class UserOutput {
+
+    VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
+    private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
+
+
+//    public Map<String, VendingMachineRow> something (VendingMachineRowBuilder vendingMachineRowBuilder){
+//        vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
+//
+//        return vendingMachineRows;
+//    }
+//    something();
+
+
+
     public void displayMessage(String message) {
         System.out.println();
         System.out.println(message);
@@ -49,10 +68,17 @@ public class UserOutput {
         System.out.print("Current balance remaining: ");
     }
 
+    public void displaySelectItemScreen(Map<String, Item> inventoryMap){
+        displayVendingItems(inventoryMap);
+        System.out.println("Please enter the slot location: ");
+
+    }
+
     public void displayVendingItems(Map<String, Item> inventoryMap){
+        //CURRENTLY TESTING IN CLI FILE. NOT WHERE IT WILL STAY. MOVE IMPORTS TO USERINPUT
         //INCLUDE QUANTITY AFTER BUILDING MACHINE ROW CLASS
         //PRINT NOT AVAILABLE IF QUANTITY = 0
-        System.out.println("HELP!!!!!!!!");
+        //System.out.println("HELP!!!!!!!!");
         String[] slotLetterArray = new String[]{"A","B","C","D"};
         String[] slotNumberArray = new String[]{"1","2","3","4"};
 
@@ -66,11 +92,12 @@ public class UserOutput {
                 System.out.print(inventoryMap.get(currentLetter + currentNumber).getPrice());
                 System.out.print("   ");
                 //FOR PRINTING QUANTITY
-                //if (.getQuantity > 1 && .getQuantity <= 6){
-                //System.out.print(vendingMachineRowMap.get(currentLetter + currentNumber).getQuantity());
-                //} else {
-                //System.out.println("Item unavailable. Please make another selection");
-            //}
+                if (vendingMachineRows.get(currentLetter + currentNumber).getQuantity() > 1 && vendingMachineRows.get(currentLetter + currentNumber).getQuantity() <= 6){
+                System.out.print(vendingMachineRows.get(currentLetter + currentNumber).getQuantity());
+                System.out.println();
+                } else {
+                System.out.println("Item unavailable. Please make another selection");
+            }
 
 
             }
