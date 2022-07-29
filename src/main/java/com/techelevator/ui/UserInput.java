@@ -34,5 +34,24 @@ public class UserInput {
         }
 
     }
+
+    public String getPurchaseMenuOption(){
+        String selectedOption = scanner.nextLine();
+        String option = selectedOption.trim().toLowerCase();
+
+        userOutput.displayOption(option);
+        if (option.equalsIgnoreCase("m")) {
+            return "feed money";
+        }
+        else if (option.equalsIgnoreCase("s")) {
+            return "select item";
+        }
+        else if (option.equalsIgnoreCase("f")) {
+            return "finish transaction";
+        }
+        else {
+            return "";
+        }
+    }
 }
 

@@ -66,6 +66,8 @@ public class UserOutput {
 
         System.out.println();
         System.out.print("Current balance remaining: ");
+        System.out.println();
+        System.out.print("Please select an option: ");
     }
 
     public void displaySelectItemScreen(Map<String, Item> inventoryMap){
