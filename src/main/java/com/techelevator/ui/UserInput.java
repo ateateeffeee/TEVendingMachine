@@ -3,6 +3,7 @@ package com.techelevator.ui;
 import com.techelevator.application.VendingMachineRow;
 import com.techelevator.application.VendingMachineRowBuilder;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -69,8 +70,13 @@ public class UserInput {
         //userOutput.displayOption(option);
 
         return option;
+    }
 
+    public BigDecimal getFeedMoneyInput(){
+        String selectedOption = scanner.nextLine();
+        BigDecimal moneyFed = new BigDecimal(selectedOption);
 
+        return moneyFed;
     }
 }
 

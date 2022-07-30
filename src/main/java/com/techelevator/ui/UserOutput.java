@@ -70,6 +70,13 @@ public class UserOutput {
         System.out.print("Please select an option: ");
     }
 
+    public void displayFeedMoneyMenu(){
+
+        System.out.println("Please enter a whole dollar amount ($1.00, $5.00, $10.00, $20.00): ");
+        System.out.println();
+
+    }
+
     public void displaySelectItemScreen(Map<String, Item> inventoryMap, Map<String, VendingMachineRow> vendingMachineRows){
         displayVendingItems(inventoryMap, vendingMachineRows);
         System.out.println("Please enter the slot location: ");
@@ -144,4 +151,6 @@ public class UserOutput {
 //        System.out.println(inventoryMap.values());
 
     }
+
+
 }

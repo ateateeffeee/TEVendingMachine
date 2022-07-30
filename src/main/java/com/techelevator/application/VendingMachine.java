@@ -4,6 +4,7 @@ import com.techelevator.Reader.FileReader;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -40,6 +41,11 @@ public class VendingMachine {
 
                 if (purchaseMenuChoice.equals("feed money")) {
                     //write logic to do math
+                    userOutput.displayFeedMoneyMenu();
+                    BigDecimal moneyFed= userInput.getFeedMoneyInput();
+                    //add to balance
+                    //make a balance class/calculator class
+
                 } else if (purchaseMenuChoice.equals("select item")) {
 
                     while (purchaseMenuChoice.equals("select item")) {
