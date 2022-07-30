@@ -41,8 +41,12 @@ public class VendingMachine {
 
                 if (purchaseMenuChoice.equals("feed money")) {
                     //write logic to do math
-                    userOutput.displayFeedMoneyMenu();
-                    BigDecimal moneyFed= userInput.getFeedMoneyInput();
+                    while(purchaseMenuChoice.equals("feed money")){
+                        userOutput.displayFeedMoneyMenu();
+                        BigDecimal moneyFed= userInput.getFeedMoneyInput();
+                        userOutput.displayPurchaseMenu();
+                        userInput.getPurchaseMenuOption();
+                    }
                     //add to balance
                     //make a balance class/calculator class
 
