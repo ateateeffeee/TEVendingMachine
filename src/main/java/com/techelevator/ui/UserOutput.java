@@ -82,22 +82,22 @@ public class UserOutput {
         String itemName = inventoryMap.get(userInput).getName();
         String itemType = inventoryMap.get(userInput).getItemType();
         String itemPrice = inventoryMap.get(userInput).getPrice().toString();
-        String itemTypeMessage = "";
+        String itemTypeMessage = inventoryMap.get(userInput).getItemTypeMessage();
 
 
-        if (itemType.equals("candy")) {
-           itemTypeMessage = "Sugar, Sugar, so Sweet!";
-
-        } else if (itemType.equals("munchy")){
-            itemTypeMessage = "Munchy, Munchy, so Good!";
-        } else if (itemType.equals("drink")){
-            itemTypeMessage = "Drinky, Drinky, Slurp Slurp!";
-        } else if (itemType.equals("gum")){
-            itemTypeMessage = "Chewy, Chewy, Lots O Bubbles!";
-        } else {
-            itemTypeMessage = "";
-        }
-        System.out.println("You purchased: " + itemName + "for $" + itemPrice);
+//        if (itemType.equals("candy")) {
+//            itemTypeMessage;
+//
+//        } else if (itemType.equals("munchy")){
+//            itemTypeMessage = "Munchy, Munchy, so Good!";
+//        } else if (itemType.equals("drink")){
+//            itemTypeMessage = "Drinky, Drinky, Slurp Slurp!";
+//        } else if (itemType.equals("gum")){
+//            itemTypeMessage = "Chewy, Chewy, Lots O Bubbles!";
+//        } else {
+//            itemTypeMessage = "";
+//        }
+        System.out.println("You purchased: " + itemName + " for $" + itemPrice);
         System.out.println(itemTypeMessage);
 
         //print money remaining

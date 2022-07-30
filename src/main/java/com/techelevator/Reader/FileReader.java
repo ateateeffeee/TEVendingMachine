@@ -35,7 +35,7 @@ public class FileReader {
                 String itemType = delimitedString[3];
 
                 if (itemType.equals("Candy")) {
-                    Candy candy = new Candy(slotLocation);
+                    Candy candy = new Candy(slotLocation, "Sugar, Sugar, so Sweet!" );
                     candy.setName(name);
                     candy.setPrice(new BigDecimal(price));
 
@@ -43,7 +43,7 @@ public class FileReader {
                     inventoryMap.put(candy.getSlotLocation(), candy);
 
                 } else if (itemType.equals("Gum")) {
-                    Gum gum = new Gum(slotLocation);
+                    Gum gum = new Gum(slotLocation, "Chewy, Chewy, Lots O Bubbles!");
                     gum.setName(name);
                     gum.setPrice(new BigDecimal(price));
 
@@ -52,7 +52,7 @@ public class FileReader {
                     inventoryMap.put(gum.getSlotLocation(), gum);
 
                 } else if (itemType.equals("Drink")) {
-                    Drink drink = new Drink(slotLocation);
+                    Drink drink = new Drink(slotLocation, "Drinky, Drinky, Slurp Slurp!");
                     drink.setName(name);
                     drink.setPrice(new BigDecimal(price));
 
@@ -60,7 +60,7 @@ public class FileReader {
                     inventoryMap.put(drink.getSlotLocation(), drink);
 
                 } else if (itemType.equals("Munchy")) {
-                    Munchy munchy = new Munchy(slotLocation);
+                    Munchy munchy = new Munchy(slotLocation, "Munchy, Munchy, so good!");
                     munchy.setName(name);
                     munchy.setPrice(new BigDecimal(price));
 

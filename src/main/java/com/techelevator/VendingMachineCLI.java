@@ -13,6 +13,7 @@ public class VendingMachineCLI {
 		fileReader.readFile(); //TESTING
 
 		UserOutput userOutput = new UserOutput(); //TESTING
+		//make sure user can't purchase item if item quantity is 0
 		//userOutput.displayVendingItems(fileReader.readFile());  //TESTING
 		//userOutput.displaySelectItemScreen(fileReader.readFile()); //TESTING
 

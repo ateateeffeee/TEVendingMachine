@@ -38,26 +38,38 @@ public class VendingMachine {
                 userOutput.displayPurchaseMenu();
                 String purchaseMenuChoice = userInput.getPurchaseMenuOption();
 
-                if(purchaseMenuChoice.equals("feed money")){
+                if (purchaseMenuChoice.equals("feed money")) {
                     //write logic to do math
-                }
-                else if(purchaseMenuChoice.equals("select item")){
+                } else if (purchaseMenuChoice.equals("select item")) {
 
                     while (purchaseMenuChoice.equals("select item")) {
                         userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
                         String selectItemOptionChoice = userInput.getSelectItemOption().toUpperCase();
-                        //update balance
-                        vendingMachineRows.get(selectItemOptionChoice).updateQuantity(); //update quantity
-                        userOutput.displayItemTypeMessage(selectItemOptionChoice,fileReader.readFile());
-                        //if 0 don't buy
+                        if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() > 0) {
+                            //update balance
+                            vendingMachineRows.get(selectItemOptionChoice).updateQuantity(); //update quantity
+                            userOutput.displayItemTypeMessage(selectItemOptionChoice, fileReader.readFile());
+                            //if 0 don't buy
 
 
-                        userOutput.displayPurchaseMenu();
-                        userInput.getPurchaseMenuOption();
-                    }
+                            userOutput.displayPurchaseMenu();
+                            userInput.getPurchaseMenuOption();
+                            //UPDATE QUANTITY SKIPS ONE WHEN IT SHOULD STILL COUNT AS INVENTORY
+                            
+                       // } //else if(vendingMachineRows.get(selectItemOptionChoice).getQuantity() == 0){
+//                                System.out.println("Item unavailable. Please make another selection");
+//                                userOutput.displayPurchaseMenu();
+//                                userInput.getPurchaseMenuOption();
+                    } //else{
+//                                userOutput.displayPurchaseMenu();
+//                                userInput.getPurchaseMenuOption();
+//                            }
+
+                }
+
                     userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
                     String selectItemOptionChoice = userInput.getSelectItemOption();
-                    //user selectedItempOption to target item in map
+                    //user selectedItemOption to target item in map
                     //System.out.println("You picked: " + pull item from map );
 
                     //update balance
@@ -70,10 +82,9 @@ public class VendingMachine {
                 }
                 else if(purchaseMenuChoice.equals("finish transaction")){
                     //display change due/change made with updated bal to $0
+                    userOutput.displayMainMenu();
                 }
-                // make a purchase
 
-                //GET USER INPUT FOR PURCHASE MENU
             }
             else if(choice.equals("exit")) {
                 // goodbye

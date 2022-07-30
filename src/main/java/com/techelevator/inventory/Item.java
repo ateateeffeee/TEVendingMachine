@@ -6,13 +6,14 @@ public abstract class Item {
 
     private BigDecimal price;
     private String name;
-    private String description;
+    private String itemTypeMessage;
     private String slotLocation;
     private String itemType;
 
     //constructor
-    public Item(String slotLocation){
+    public Item(String slotLocation, String itemTypeMessage){
         this.slotLocation = slotLocation;
+        this.itemTypeMessage = itemTypeMessage;
     }
 
     public BigDecimal getPrice() {
@@ -23,8 +24,8 @@ public abstract class Item {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getItemTypeMessage() {
+        return itemTypeMessage;
     }
 
     public String getSlotLocation() {
@@ -41,10 +42,6 @@ public abstract class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setItemType(String itemType) {
