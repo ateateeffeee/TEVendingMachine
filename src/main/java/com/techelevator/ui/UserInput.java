@@ -1,5 +1,9 @@
 package com.techelevator.ui;
 
+import com.techelevator.application.VendingMachineRow;
+import com.techelevator.application.VendingMachineRowBuilder;
+
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -12,6 +16,10 @@ public class UserInput {
 
     //create instance of userOutput
     UserOutput userOutput = new UserOutput();
+    //create instance of VendingMachineRowBuilder to have map of slot locations
+    //VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
+    //private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
+
     //Class.forName(UserOutput);
 
     public String getHomeScreenOption() {

@@ -45,7 +45,15 @@ public class VendingMachine {
                     while (purchaseMenuChoice.equals("select item")) {
                         userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
                         String selectItemOptionChoice = userInput.getSelectItemOption().toUpperCase();
-                        if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() > 0) {
+
+                        //move invalid choice check to top
+                        if(!vendingMachineRows.containsKey(selectItemOptionChoice)){
+                            //error message when slot location does not exist
+                            System.out.println("Item does not exist. Please make another selection");
+                            userOutput.displayPurchaseMenu();
+                            userInput.getPurchaseMenuOption();
+                        }
+                         else if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() > 0) {
                             //update balance
                             vendingMachineRows.get(selectItemOptionChoice).updateQuantity(); //update quantity
                             userOutput.displayItemTypeMessage(selectItemOptionChoice, fileReader.readFile());
@@ -56,14 +64,19 @@ public class VendingMachine {
                             userInput.getPurchaseMenuOption();
                             //UPDATE QUANTITY SKIPS ONE WHEN IT SHOULD STILL COUNT AS INVENTORY
                             
-                       // } //else if(vendingMachineRows.get(selectItemOptionChoice).getQuantity() == 0){
-//                                System.out.println("Item unavailable. Please make another selection");
-//                                userOutput.displayPurchaseMenu();
-//                                userInput.getPurchaseMenuOption();
-                    } //else{
-//                                userOutput.displayPurchaseMenu();
-//                                userInput.getPurchaseMenuOption();
-//                            }
+                        } else if(vendingMachineRows.get(selectItemOptionChoice).getQuantity() == 0){
+                                //error message when item quantity is 0
+                                System.out.println("Item unavailable. Please make another selection");
+                                userOutput.displayPurchaseMenu();
+                                userInput.getPurchaseMenuOption();
+                        }
+
+                        else{
+                              userOutput.displayPurchaseMenu();
+                              userInput.getPurchaseMenuOption();
+                            }
+
+
 
                 }
 

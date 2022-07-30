@@ -123,7 +123,7 @@ public class UserOutput {
                 System.out.print(inventoryMap.get(currentLetter + currentNumber).getPrice());
                 System.out.print("   ");
                 //FOR PRINTING QUANTITY
-                if (vendingMachineRows.get(currentLetter + currentNumber).getQuantity() > 1 && vendingMachineRows.get(currentLetter + currentNumber).getQuantity() <= 6){
+                if (vendingMachineRows.get(currentLetter + currentNumber).getQuantity() > 0 && vendingMachineRows.get(currentLetter + currentNumber).getQuantity() <= 6){
                 System.out.print(vendingMachineRows.get(currentLetter + currentNumber).getQuantity());
                 System.out.println();
                 } else {
