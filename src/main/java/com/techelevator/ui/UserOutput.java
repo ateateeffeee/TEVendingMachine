@@ -4,6 +4,7 @@ import com.techelevator.application.VendingMachineRow;
 import com.techelevator.application.VendingMachineRowBuilder;
 import com.techelevator.inventory.Item;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +57,7 @@ public class UserOutput {
         System.out.println("option = " + option);
     }
 
-    public void displayPurchaseMenu(){
+    public void displayPurchaseMenu(BigDecimal balance){
         System.out.println("What would you like to do?");
         System.out.println();
 
@@ -65,7 +66,7 @@ public class UserOutput {
         System.out.println("F) Finish Transaction");
 
         System.out.println();
-        System.out.print("Current balance remaining: ");
+        System.out.print("Current balance remaining: " + "$" + balance);
         System.out.println();
         System.out.print("Please select an option: ");
     }
