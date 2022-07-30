@@ -36,11 +36,12 @@ public class VendingMachine {
                 userOutput.displayVendingItems(fileReader.readFile(), vendingMachineRows);
             }
             else if(choice.equals("purchase")) {
+
+                userOutput.displayPurchaseMenu(balance.getBalance());
+                String purchaseMenuChoice = userInput.getPurchaseMenuOption();
+
                 while (choice.equals("purchase")) {
 
-
-                    userOutput.displayPurchaseMenu(balance.getBalance());
-                    String purchaseMenuChoice = userInput.getPurchaseMenuOption();
 //LOOP
                     if (purchaseMenuChoice.equals("feed money")) {
                         //write logic to do math
@@ -56,11 +57,12 @@ public class VendingMachine {
                             //make a balance class/calculator class
                         }
                         //NEW STUFF
-                        userOutput.displayPurchaseMenu(balance.getBalance());
-                        userInput.getPurchaseMenuOption();
+//                        userOutput.displayPurchaseMenu(balance.getBalance());
+//                        userInput.getPurchaseMenuOption();
 
 
-                    } else if (purchaseMenuChoice.equals("select item")) {
+                    }
+                    if (purchaseMenuChoice.equals("select item")) {
 
                         while (purchaseMenuChoice.equals("select item")) {
                             userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
@@ -71,32 +73,31 @@ public class VendingMachine {
                                 //prints error message when slot location does not exist
                                 System.out.println("Item does not exist. Please make another selection");
                                 userOutput.displayPurchaseMenu(balance.getBalance());
-                                userInput.getPurchaseMenuOption();
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
                             } else if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() > 0) {
                                 balance.subtractFromBalance(fileReader.readFile().get(selectItemOptionChoice).getPrice());            //update balance
                                 vendingMachineRows.get(selectItemOptionChoice).updateQuantity(); //update quantity
                                 userOutput.displayItemTypeMessage(selectItemOptionChoice, fileReader.readFile());
                                 //if 0 don't buy
 
-
                                 userOutput.displayPurchaseMenu(balance.getBalance());
-                                userInput.getPurchaseMenuOption();
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
 
                             } else if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() == 0) {
                                 //prints error message when item quantity is 0
                                 System.out.println("Item unavailable. Please make another selection");
                                 userOutput.displayPurchaseMenu(balance.getBalance());
-                                userInput.getPurchaseMenuOption();
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
                             } else {
                                 userOutput.displayPurchaseMenu(balance.getBalance());
-                                userInput.getPurchaseMenuOption();
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
                             }
 
 
                         }
 
-                        userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
-                        String selectItemOptionChoice = userInput.getSelectItemOption();
+                    //    userOutput.displaySelectItemScreen(fileReader.readFile(), vendingMachineRows);
+                    //    String selectItemOptionChoice = userInput.getSelectItemOption();
                         //user selectedItemOption to target item in map
                         //System.out.println("You picked: " + pull item from map );
 
@@ -105,17 +106,21 @@ public class VendingMachine {
 
                         //get userInput for items selected
                         //purchasedItemScreen
-                        userOutput.displayPurchaseMenu(balance.getBalance());
+                     //   userOutput.displayPurchaseMenu(balance.getBalance());
 
 
-                    } else if (purchaseMenuChoice.equals("finish transaction")) {
-                        //display change due/change made with updated bal to $0
-                        userOutput.displayMainMenu();
                     }
+                    if (purchaseMenuChoice.equals("finish transaction")) {
+                        //display change due/change made with updated bal to $0
+
+                        choice = "";
+                        purchaseMenuChoice = "";
+                    }
+
                 }
 
             }
-            else if(choice.equals("exit")) {
+            if(choice.equals("exit")) {
                 // goodbye
                 break;
             }
