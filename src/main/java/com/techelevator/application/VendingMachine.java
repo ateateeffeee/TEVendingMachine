@@ -61,16 +61,25 @@ public class VendingMachine {
                         while (purchaseMenuChoice.equals("feed money")) {
                             userOutput.displayFeedMoneyMenu();
                             BigDecimal moneyFed = userInput.getFeedMoneyInput();
-                            balance.addToBalance(moneyFed); // add money to balance
-                            userOutput.displayPurchaseMenu(balance.getBalance());
+                            String userMoneyFed = moneyFed.toString();
+                            //ensuring user can only enter whole int amounts
+                            if (userMoneyFed.contains(".")) {
+                                System.out.println("An error has occurred. Please try again.");
+                                userOutput.displayPurchaseMenu(balance.getBalance());
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
 
-                            audit.writeMoneyFedToFile(moneyFed.toString(), balance.getBalance().toString());
+                            } else {
+                                balance.addToBalance(moneyFed); // add money to balance
+                                userOutput.displayPurchaseMenu(balance.getBalance());
 
-                            purchaseMenuChoice = userInput.getPurchaseMenuOption();
-                            System.out.println(purchaseMenuChoice);
+                                audit.writeMoneyFedToFile(moneyFed.toString(), balance.getBalance().toString());
 
-                            //add to balance
-                            //make a balance class/calculator class
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
+                                System.out.println(purchaseMenuChoice);
+
+                                //add to balance
+                                //make a balance class/calculator class
+                            }
                         }
                         //NEW STUFF
 //                        userOutput.displayPurchaseMenu(balance.getBalance());

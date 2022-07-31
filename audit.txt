@@ -1,6 +1,3 @@
 Vending Machine Audit File
 
 
-07/31/2022 11:20:19 PM MONEY FED:       $20.00    $20.00
-07/31/2022 11:20:23 PM Singlemint Gum       D3 $20.00    $17.65
-07/31/2022 11:20:25 PM CHANGE GIVEN:     $17.65    $0.00

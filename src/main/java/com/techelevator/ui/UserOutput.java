@@ -73,7 +73,7 @@ public class UserOutput {
 
     public void displayFeedMoneyMenu(){
 
-        System.out.println("Please enter a whole dollar amount ($1.00, $5.00, $10.00, $20.00): ");
+        System.out.println("Please enter a whole dollar amount ($1, $5, $10, $20): ");
         System.out.println();
 
     }
