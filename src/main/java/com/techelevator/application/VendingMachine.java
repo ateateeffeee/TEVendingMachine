@@ -1,6 +1,7 @@
 package com.techelevator.application;
 
 import com.techelevator.Reader.FileReader;
+import com.techelevator.Writer.Audit;
 import com.techelevator.change.Change;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
@@ -16,12 +17,15 @@ public class VendingMachine {
     VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
     private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
     Balance balance = new Balance();
+    Audit audit = new Audit();
 
 
     //boolean inMenu = true;
 
     public void run() {
 
+        //create audit file
+        audit.createFile();
         //inventory file
         FileReader fileReader = new FileReader();
         fileReader.readFile();
@@ -33,6 +37,13 @@ public class VendingMachine {
 
 
             System.out.println(choice);
+
+            if(choice.equals("")){
+                System.out.println("Invalid option. Please try again.");
+                userOutput.displayMainMenu();
+                choice = userInput.getHomeScreenOption();
+
+            }
             if(choice.equals("display")) {
                 // display the items
                 userOutput.displayVendingItems(fileReader.readFile(), vendingMachineRows);
@@ -53,8 +64,11 @@ public class VendingMachine {
                             balance.addToBalance(moneyFed); // add money to balance
                             userOutput.displayPurchaseMenu(balance.getBalance());
 
+                            audit.writeMoneyFedToFile(moneyFed.toString(), balance.getBalance().toString());
+
                             purchaseMenuChoice = userInput.getPurchaseMenuOption();
                             System.out.println(purchaseMenuChoice);
+
                             //add to balance
                             //make a balance class/calculator class
                         }
@@ -71,21 +85,24 @@ public class VendingMachine {
                             String selectItemOptionChoice = userInput.getSelectItemOption().toUpperCase();
 
                             //move invalid choice check to top
-                            if (balance.getBalance().compareTo(fileReader.readFile().get(selectItemOptionChoice).getPrice()) < 0 ){
-                                System.out.println("Insufficient funds. Please insert money and try again.");
-                                userOutput.displayPurchaseMenu(balance.getBalance());
-                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
-                            }
-                             else if (!vendingMachineRows.containsKey(selectItemOptionChoice)) {
+                            if (!vendingMachineRows.containsKey(selectItemOptionChoice)) {
                                 //prints error message when slot location does not exist
                                 System.out.println("Item does not exist. Please make another selection");
                                 userOutput.displayPurchaseMenu(balance.getBalance());
                                 purchaseMenuChoice = userInput.getPurchaseMenuOption();
-                            } else if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() > 0) {
+                            }
+                            else if (balance.getBalance().compareTo(fileReader.readFile().get(selectItemOptionChoice).getPrice()) < 0 ){
+                                System.out.println("Insufficient funds. Please insert money and try again.");
+                                userOutput.displayPurchaseMenu(balance.getBalance());
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
+                            }
+                              else if (vendingMachineRows.get(selectItemOptionChoice).getQuantity() > 0) {
+                                 BigDecimal oldBalance = balance.getBalance();
                                 balance.subtractFromBalance(fileReader.readFile().get(selectItemOptionChoice).getPrice());            //update balance
                                 vendingMachineRows.get(selectItemOptionChoice).updateQuantity(); //update quantity
                                 userOutput.displayItemTypeMessage(selectItemOptionChoice, fileReader.readFile());
                                 //if 0 don't buy
+                                audit.writePurchaseToFile(fileReader.readFile().get(selectItemOptionChoice).getName(), selectItemOptionChoice, oldBalance.toString(), balance.getBalance().toString());
 
                                 userOutput.displayPurchaseMenu(balance.getBalance());
                                 purchaseMenuChoice = userInput.getPurchaseMenuOption();
@@ -127,9 +144,15 @@ public class VendingMachine {
 
                         //wipe balance
                         balance.subtractFromBalance(balance.getBalance());
+                        audit.writeChangeGivenToFile(change.getTotalValue().toString(), balance.getBalance().toString());
 
                         choice = "";
                         purchaseMenuChoice = "";
+                    }
+                    if(purchaseMenuChoice.equals("")){
+                        System.out.println("Invalid option. Please try again.");
+                        userOutput.displayPurchaseMenu(balance.getBalance());
+                        purchaseMenuChoice = userInput.getPurchaseMenuOption();
                     }
 
                 }
