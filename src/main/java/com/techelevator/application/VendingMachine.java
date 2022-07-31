@@ -147,7 +147,6 @@ public class VendingMachine {
                         audit.writeChangeGivenToFile(change.getTotalValue().toString(), balance.getBalance().toString());
 
                         choice = "";
-                        purchaseMenuChoice = "";
                     }
                     if(purchaseMenuChoice.equals("")){
                         System.out.println("Invalid option. Please try again.");

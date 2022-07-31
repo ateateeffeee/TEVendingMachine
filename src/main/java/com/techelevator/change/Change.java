@@ -38,21 +38,21 @@ public class Change {
         }
     }
 
-        public void calculateNumOfQuarters (BigDecimal changeInQuarters){
-            numOfQuarters = changeInQuarters.divide(new BigDecimal(0.25), RoundingMode.UNNECESSARY).intValue();
-        }
-
-        public void calculateNumOfDimes (BigDecimal changeInDimes){
-            numOfQuarters = changeInDimes.divide(new BigDecimal(0.10), RoundingMode.UNNECESSARY).intValue();
-        }
-
-        public void calculateNumOfNickels (BigDecimal changeInNickels){
-            numOfQuarters = changeInNickels.divide(new BigDecimal(0.05), RoundingMode.UNNECESSARY).intValue();
-        }
-
-        public void calculateNumOfOneDollars (BigDecimal changeInOneDollars){
-            numOfQuarters = changeInOneDollars.divide(new BigDecimal(1.00), RoundingMode.UNNECESSARY).intValue();
-        }
+//        public void calculateNumOfQuarters (BigDecimal changeInQuarters){
+//            numOfQuarters = changeInQuarters.divide(new BigDecimal(0.25), RoundingMode.UNNECESSARY).intValue();
+//        }
+//
+//        public void calculateNumOfDimes (BigDecimal changeInDimes){
+//            numOfQuarters = changeInDimes.divide(new BigDecimal(0.10), RoundingMode.UNNECESSARY).intValue();
+//        }
+//
+//        public void calculateNumOfNickels (BigDecimal changeInNickels){
+//            numOfQuarters = changeInNickels.divide(new BigDecimal(0.05), RoundingMode.UNNECESSARY).intValue();
+//        }
+//
+//        public void calculateNumOfOneDollars (BigDecimal changeInOneDollars){
+//            numOfQuarters = changeInOneDollars.divide(new BigDecimal(1.00), RoundingMode.UNNECESSARY).intValue();
+//        }
 
 
         //getters
