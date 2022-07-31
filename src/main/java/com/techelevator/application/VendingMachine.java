@@ -1,6 +1,7 @@
 package com.techelevator.application;
 
 import com.techelevator.Reader.FileReader;
+import com.techelevator.change.Change;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
@@ -15,6 +16,7 @@ public class VendingMachine {
     VendingMachineRowBuilder vendingMachineRowBuilder = new VendingMachineRowBuilder();
     private Map<String, VendingMachineRow> vendingMachineRows = vendingMachineRowBuilder.getMachineRows();
     Balance balance = new Balance();
+
 
     //boolean inMenu = true;
 
@@ -69,7 +71,12 @@ public class VendingMachine {
                             String selectItemOptionChoice = userInput.getSelectItemOption().toUpperCase();
 
                             //move invalid choice check to top
-                            if (!vendingMachineRows.containsKey(selectItemOptionChoice)) {
+                            if (balance.getBalance().compareTo(fileReader.readFile().get(selectItemOptionChoice).getPrice()) < 0 ){
+                                System.out.println("Insufficient funds. Please insert money and try again.");
+                                userOutput.displayPurchaseMenu(balance.getBalance());
+                                purchaseMenuChoice = userInput.getPurchaseMenuOption();
+                            }
+                             else if (!vendingMachineRows.containsKey(selectItemOptionChoice)) {
                                 //prints error message when slot location does not exist
                                 System.out.println("Item does not exist. Please make another selection");
                                 userOutput.displayPurchaseMenu(balance.getBalance());
@@ -111,7 +118,15 @@ public class VendingMachine {
 
                     }
                     if (purchaseMenuChoice.equals("finish transaction")) {
+                        Change change = new Change(balance.getBalance());
+                        change.calculateChange(balance.getBalance());
                         //display change due/change made with updated bal to $0
+                        System.out.println("Your total change is: $" + change.getTotalValue()); //print total amount
+                        System.out.println(change.getNumOfOneDollars() + " dollars, " + change.getNumOfQuarters() + " quarters, " +
+                                change.getNumOfDimes() + " dimes, and " + change.getNumOfNickels() + " nickels." );
+
+                        //wipe balance
+                        balance.subtractFromBalance(balance.getBalance());
 
                         choice = "";
                         purchaseMenuChoice = "";

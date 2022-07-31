@@ -22,18 +22,19 @@ public class Change {
     public void calculateChange(BigDecimal changeDue) {
         //some type of loop to loop through
         while (changeDue.compareTo(new BigDecimal(0.00)) > 0) {
-            if (changeDue.compareTo(new BigDecimal(1.00)) > 0) {
+            if (changeDue.compareTo(new BigDecimal(1.00)) >= 0) {
                 numOfOneDollars++;
-                changeDue.subtract(new BigDecimal(1.00));
+               changeDue = changeDue.subtract(new BigDecimal("1.00").setScale(2, RoundingMode.HALF_UP));
+            } else if (changeDue.compareTo(new BigDecimal("0.25")) >= 0){
+                numOfQuarters++;
+                changeDue = changeDue.subtract(new BigDecimal("0.25").setScale(2, RoundingMode.HALF_UP));
+            } else if (changeDue.compareTo(new BigDecimal("0.10")) >= 0){
+                numOfDimes++;
+                changeDue = changeDue.subtract(new BigDecimal("0.10").setScale(2, RoundingMode.HALF_UP));
+            } else if (changeDue.compareTo(new BigDecimal("0.05")) == 0){
+                numOfNickels++;
+                changeDue = changeDue.subtract(new BigDecimal("0.05").setScale(2, RoundingMode.HALF_UP));
             }
-
-            //finish else ifs for rest of money types
-
-            //while(changeDue > 0){
-            //if(changeDue > 1.00){
-            //numOfOneDollars++;
-            //}change due -=1;
-            //}
         }
     }
 
